@@ -1,6 +1,5 @@
-# zeru
-Project Zeru
-
+# Zeru
+Project create for cultivation managment.
 
 ## Species classification
 ![SPECIE_CLASSIFICATION](PROJECT_ZERU_SPECIE_CLASSIFICATION.png)

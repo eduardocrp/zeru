@@ -1,4 +1,4 @@
-package com.eddev.zeru.zeru;
+package com.eddev.zeru;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

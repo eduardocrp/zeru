@@ -1,4 +1,4 @@
-package com.eddev.zeru.zeru;
+package com.eddev.zeru;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ZeruApplication<zeru>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.eddev.zeru.ZeruApplication",
+            "projectName": "zeru",
+            "args": ""
+        }
+    ]
+}

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -15,11 +16,12 @@ public class Order implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
+    @Id
     private BigInteger idOrder;
     private String dsOrder;
     
     @ManyToOne
     @JoinColumn(name = "id_class")
-    private Class classOrder;
+    private ClassOrder classOrder;
 
 }

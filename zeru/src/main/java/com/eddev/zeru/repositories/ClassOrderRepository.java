@@ -2,12 +2,12 @@ package com.eddev.zeru.repositories;
 
 import java.math.BigInteger;
 
-import com.eddev.zeru.models.Order;
+import com.eddev.zeru.models.ClassOrder;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepo extends JpaRepository<Order, BigInteger> {
+public interface ClassOrderRepository extends JpaRepository<ClassOrder, BigInteger> {
 
 }

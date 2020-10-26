@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -22,6 +23,7 @@ public class LifeStage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
     @Getter
     @Setter
     private BigInteger idLifeStage;

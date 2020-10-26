@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PhylumRepo extends JpaRepository<Phylum, BigInteger> {
+public interface PhylumRepository extends JpaRepository<Phylum, BigInteger> {
 
 }

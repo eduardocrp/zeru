@@ -1,0 +1,6 @@
+### Test find all phylums
+GET http://localhost:8080/phylum
+
+
+### Test find all phylums
+GET http://localhost:8080/phylum/1

@@ -17,8 +17,8 @@ public class ClassOrder implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private BigInteger idClass;
-    private String dsClass;
+    private BigInteger idClassOrder;
+    private String dsClassOrder;
     
     @ManyToOne
     @JoinColumn(name = "id_phylum")

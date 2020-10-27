@@ -1,6 +1,30 @@
 ### Test find all phylums
 GET http://localhost:8080/phylum
+Content-Type: application/json
 
 
-### Test find all phylums
+### Test find phylums by id
 GET http://localhost:8080/phylum/1
+Content-Type: application/json
+
+### Test insert phylum
+POST http://localhost:8080/phylum
+Content-Type: application/json
+
+{
+  "idPhylum": 2,
+  "dsPhylum": "Filo Test 2"
+}
+
+### Test update phylum
+PUT http://localhost:8080/phylum
+Content-Type: application/json
+
+{
+  "idPhylum": 1,
+  "dsPhylum": "Filo Test 1234"
+}
+
+### Test delete phylums by id
+DELETE http://localhost:8080/phylum/2
+Content-Type: application/json

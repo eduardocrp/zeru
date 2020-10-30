@@ -1,4 +1,4 @@
-package com.eddev.zeru.sevices;
+package com.eddev.zeru.services;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import com.eddev.zeru.models.Family;
 import com.eddev.zeru.repositories.FamilyRepository;
-import com.eddev.zeru.sevices.exceptions.ObjectNotFoundException;
+import com.eddev.zeru.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

@@ -3,6 +3,7 @@ package com.eddev.zeru.models;
 import java.io.Serializable;
 import java.math.BigInteger;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class Phylum implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger idPhylum;
+
+    @Column(nullable = false)
     private String dsPhylum;
 
 }

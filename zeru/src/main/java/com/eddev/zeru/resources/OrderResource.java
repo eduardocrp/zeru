@@ -4,55 +4,55 @@ import java.math.BigInteger;
 import java.net.URI;
 import java.util.List;
 
-import com.eddev.zeru.models.Phylum;
-import com.eddev.zeru.services.PhylumService;
+import com.eddev.zeru.models.Order;
+import com.eddev.zeru.services.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/phylum")
-public class PhylumResource {
+@RequestMapping(value = "/order")
+public class OrderResource {
 
     @Autowired
-    private PhylumService service;
+    private OrderService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Phylum> find(@PathVariable BigInteger id) {
+    public ResponseEntity<Order> find(@PathVariable BigInteger id) {
         return ResponseEntity.ok().body(service.find(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Phylum>> findAll() {
+    public ResponseEntity<List<Order>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Phylum obj) {
+    public ResponseEntity<Void> insert(@RequestBody Order obj) {
 
-        Phylum objInserted = service.insert(obj);
+        Order objInserted = service.insert(obj);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objInserted.getIdPhylum())
-                .toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(objInserted.getIdOrder()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody Phylum obj) {
+    public ResponseEntity<Void> update(@RequestBody Order obj) {
 
-        Phylum objUpdated = service.update(obj);
+        Order objUpdated = service.update(obj);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objUpdated.getIdPhylum())
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objUpdated.getIdOrder())
                 .toUri();
 
         return ResponseEntity.created(uri).build();
@@ -66,6 +66,5 @@ public class PhylumResource {
 
         return ResponseEntity.noContent().build();
     }
-        
 
 }

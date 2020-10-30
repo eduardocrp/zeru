@@ -1,4 +1,4 @@
-package com.eddev.zeru.sevices.exceptions;
+package com.eddev.zeru.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

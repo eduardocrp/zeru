@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.eddev.zeru.models.enums.LifeStageType;
 
@@ -22,6 +23,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 @Entity
+@Table(name = "TB_LIFE_STAGE")
 public class LifeStage implements Serializable {
 
     private static final long serialVersionUID = 1L;

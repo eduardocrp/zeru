@@ -1,59 +1,59 @@
-package com.eddev.zeru.resources;
+package com.eddev.zeru.controllers;
 
 import java.math.BigInteger;
 import java.net.URI;
 import java.util.List;
 
-import com.eddev.zeru.models.Phylum;
-import com.eddev.zeru.services.PhylumService;
+import com.eddev.zeru.models.Specie;
+import com.eddev.zeru.services.SpecieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/phylum")
-public class PhylumResource {
+@RequestMapping(value = "/specie")
+public class SpecieController {
 
     @Autowired
-    private PhylumService service;
+    private SpecieService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Phylum> find(@PathVariable BigInteger id) {
+    public ResponseEntity<Specie> find(@PathVariable BigInteger id) {
         return ResponseEntity.ok().body(service.find(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Phylum>> findAll() {
+    public ResponseEntity<List<Specie>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Phylum obj) {
+    public ResponseEntity<Void> insert(@RequestBody Specie obj) {
 
-        Phylum objInserted = service.insert(obj);
+        Specie objInserted = service.insert(obj);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objInserted.getIdPhylum())
-                .toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(objInserted.getIdSpecie()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody Phylum obj) {
+    public ResponseEntity<Void> update(@RequestBody Specie obj) {
 
-        Phylum objUpdated = service.update(obj);
+        Specie objUpdated = service.update(obj);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objUpdated.getIdPhylum())
-                .toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(objUpdated.getIdSpecie()).toUri();
 
         return ResponseEntity.created(uri).build();
 
@@ -66,6 +66,5 @@ public class PhylumResource {
 
         return ResponseEntity.noContent().build();
     }
-        
 
 }

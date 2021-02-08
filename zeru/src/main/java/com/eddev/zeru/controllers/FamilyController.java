@@ -1,11 +1,11 @@
-package com.eddev.zeru.resources;
+package com.eddev.zeru.controllers;
 
 import java.math.BigInteger;
 import java.net.URI;
 import java.util.List;
 
-import com.eddev.zeru.models.Genus;
-import com.eddev.zeru.services.GenusService;
+import com.eddev.zeru.models.Family;
+import com.eddev.zeru.services.FamilyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,40 +20,40 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/genus")
-public class GenusResource {
+@RequestMapping(value = "/family")
+public class FamilyController {
 
     @Autowired
-    private GenusService service;
+    private FamilyService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Genus> find(@PathVariable BigInteger id) {
+    public ResponseEntity<Family> find(@PathVariable BigInteger id) {
         return ResponseEntity.ok().body(service.find(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Genus>> findAll() {
+    public ResponseEntity<List<Family>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Genus obj) {
+    public ResponseEntity<Void> insert(@RequestBody Family obj) {
 
-        Genus objInserted = service.insert(obj);
+        Family objInserted = service.insert(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(objInserted.getIdGenus()).toUri();
+                .buildAndExpand(objInserted.getIdFamily()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody Genus obj) {
+    public ResponseEntity<Void> update(@RequestBody Family obj) {
 
-        Genus objUpdated = service.update(obj);
+        Family objUpdated = service.update(obj);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(objUpdated.getIdGenus())
-                .toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(objUpdated.getIdFamily()).toUri();
 
         return ResponseEntity.created(uri).build();
 

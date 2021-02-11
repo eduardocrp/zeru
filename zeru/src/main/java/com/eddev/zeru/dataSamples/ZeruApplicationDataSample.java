@@ -8,17 +8,20 @@ import com.eddev.zeru.models.Genus;
 import com.eddev.zeru.models.Order;
 import com.eddev.zeru.models.Phylum;
 import com.eddev.zeru.models.Specie;
+import com.eddev.zeru.models.User;
 import com.eddev.zeru.repositories.ClassOrderRepository;
 import com.eddev.zeru.repositories.FamilyRepository;
 import com.eddev.zeru.repositories.GenusRepository;
 import com.eddev.zeru.repositories.OrderRepository;
 import com.eddev.zeru.repositories.PhylumRepository;
 import com.eddev.zeru.repositories.SpecieRepository;
+import com.eddev.zeru.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Profile("dev")
 @Configuration
@@ -41,6 +44,12 @@ public class ZeruApplicationDataSample {
 
     @Autowired
     private SpecieRepository specieRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passEncode;
 
     @Bean
     public boolean runDataSample() throws ParseException{
@@ -78,6 +87,11 @@ public class ZeruApplicationDataSample {
         specie1.setNmScientific("Anacardium occidentale");
         specieRepository.save(specie1);
 
+        User user1 = new User();
+        user1.setEmail("tst@tst.com");
+        user1.setPassword(passEncode.encode("tst123"));
+
+        userRepository.save(user1);
 
         return true;
 

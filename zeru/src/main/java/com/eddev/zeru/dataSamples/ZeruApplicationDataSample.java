@@ -1,6 +1,7 @@
 package com.eddev.zeru.dataSamples;
 
 import java.text.ParseException;
+import java.util.Arrays;
 
 import com.eddev.zeru.models.ClassOrder;
 import com.eddev.zeru.models.Family;
@@ -9,6 +10,7 @@ import com.eddev.zeru.models.Order;
 import com.eddev.zeru.models.Phylum;
 import com.eddev.zeru.models.Specie;
 import com.eddev.zeru.models.User;
+import com.eddev.zeru.models.enums.ProfileType;
 import com.eddev.zeru.repositories.ClassOrderRepository;
 import com.eddev.zeru.repositories.FamilyRepository;
 import com.eddev.zeru.repositories.GenusRepository;
@@ -90,8 +92,13 @@ public class ZeruApplicationDataSample {
         User user1 = new User();
         user1.setEmail("tst@tst.com");
         user1.setPassword(passEncode.encode("tst123"));
+        user1.addProfile(ProfileType.ADMIN);
+        
+        User user2 = new User();
+        user2.setEmail("tst1@tst.com");
+        user2.setPassword(passEncode.encode("tst123"));
 
-        userRepository.save(user1);
+        userRepository.saveAll(Arrays.asList(user1, user2));
 
         return true;
 

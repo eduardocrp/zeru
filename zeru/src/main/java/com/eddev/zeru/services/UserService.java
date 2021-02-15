@@ -6,10 +6,12 @@ import java.util.Optional;
 
 import com.eddev.zeru.models.User;
 import com.eddev.zeru.repositories.UserRepository;
+import com.eddev.zeru.securities.UserSpringSecurity;
 import com.eddev.zeru.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +56,13 @@ public class UserService {
 
     public List<User> findAll() {
         return repo.findAll();
+    }
+
+    public UserSpringSecurity authenticated() {
+        try {
+            return (UserSpringSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

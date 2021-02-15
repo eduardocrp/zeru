@@ -2,6 +2,10 @@ package com.eddev.zeru.configs;
 
 import java.util.Arrays;
 
+import com.eddev.zeru.securities.JWTAuthenticationFilter;
+import com.eddev.zeru.securities.JWTAuthorizationFilter;
+import com.eddev.zeru.securities.utils.JWTUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,9 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Autowired
-    private Environment env;
+	private Environment env;
+
+	@Autowired
+	private JWTUtil jwtUtil;
 	
 	private static final String[] PUBLIC_MATCHERS = {
 			"/h2-console/**",
@@ -39,12 +46,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	};
 
 	private static final String[] PUBLIC_MATCHERS_GET = {
-			"/classOrder/**",
-			"/family/**",
-			"/genus/**",
-			"/order/**",
-			"/phylum/**",
-			"/specie/**"
+			"/classOrder/?",
+			"/family/?",
+			"/genus/?",
+			"/order/?",
+			"/phylum/?",
+			"/specie/?"
 	};
 
 	private static final String[] PUBLIC_MATCHERS_POST = {
@@ -63,6 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
 			.anyRequest().authenticated();
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
@@ -84,4 +93,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
 }

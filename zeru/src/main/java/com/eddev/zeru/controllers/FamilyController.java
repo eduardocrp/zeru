@@ -9,6 +9,7 @@ import com.eddev.zeru.services.FamilyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class FamilyController {
         return ResponseEntity.ok().body(service.findAll());
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody Family obj) {
 
@@ -47,6 +49,7 @@ public class FamilyController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody Family obj) {
 
@@ -59,6 +62,7 @@ public class FamilyController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
 

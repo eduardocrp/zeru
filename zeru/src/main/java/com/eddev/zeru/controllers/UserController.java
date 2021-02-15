@@ -9,6 +9,7 @@ import com.eddev.zeru.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +27,13 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> find(@PathVariable BigInteger id) {
         return ResponseEntity.ok().body(service.find(id));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
@@ -47,6 +50,7 @@ public class UserController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('COMMON_USER')")
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody User obj) {
 
@@ -59,6 +63,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable BigInteger id) {
 
